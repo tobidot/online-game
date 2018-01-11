@@ -1,0 +1,8 @@
+;; Tobi
+
+documentation/*
+*.plb
+
+;; will be build anyway
+dist/*
+node_modules/*

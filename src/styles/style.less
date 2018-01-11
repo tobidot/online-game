@@ -1,0 +1,118 @@
+@main-background-color: #999999;
+@topbar-height: 0px;
+@list-width: 200px;
+@list-color: #aaaaaa;
+@font-size: 9pt;
+@font-color: #FFFFFF;
+@track-border: 2px;
+@track-border-full: @track-border * 3 * 2;
+
+#liste {
+    background-color: @list-color;
+    position: relative;
+    margin: -1px;
+    right: 0;
+    width: @list-width;
+    height: 96vh;
+    top: @topbar-height;
+    float : right;
+}
+
+.track-borders() {
+    border-width: @track-border;
+    padding: @track-border;
+    margin: @track-border;
+    height: 2em;
+}
+
+.track {
+    .track-borders();
+    background-color: spin(@list-color, 180);
+    border-style: solid;
+    border-color: #4444aa;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
+    overflow: hidden;
+    text-align: center;
+    &:hover {
+        position: absolute;
+        margin: 0px 5px 0px 0px;  
+        right: 0px;
+        width: auto;
+        min-width: ~"calc( 100% - " @track-border-full ~" )";
+        max-width: 75vw;
+        background-color: #FFFFFF;
+        display: inline-block;
+        white-space: nowrap;  
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+/* 
+    since "track:hover" has "position:absolute",
+    a trailing track needs to fill the gap
+*/
+.track:hover + div {    
+    margin-top: ~"calc(2em + " @track-border-full ~" )";
+}
+/*
+    first track-element needs extra to margin-top
+*/
+#liste > .navigation + .track:hover {    
+    margin-top: 5px;
+}
+
+.trackholder {
+    .track-borders();
+    border-style: dashed;
+    border-color: rgba(255, 255, 255, 0.33);
+}
+
+#map {
+    height: 96vh;
+    width: ~"calc( 100% -" @list-width ~")";
+    left: 0px;
+    float: left;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+}
+
+.indexBox {
+    border: 5px #4444aa solid;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+}
+
+.index {
+    font-size: 0.9em;
+    margin-bottom: -0.25em;
+    padding-right: 1em;
+    left: 0;
+}
+
+.maxIndex {
+    font-size: 0.9em;
+    margin-top: -0.25em;
+    padding-left: 1em;
+    right: 0;
+}
+
+#heightGraph {
+    background-color: black;
+    color: white;
+    opacity: 0.75;
+    position: fixed;
+    left: 10%;
+    bottom: 10%;
+    width: 20%;
+    height: 150px;
+    min-width: 200px;
+    &:hover {
+        opacity: 1;
+    }
+}
